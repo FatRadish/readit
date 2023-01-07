@@ -1,7 +1,8 @@
 const {app,BrowserWindow} = require('electron')
 const path = require('path')
 const WinState = require('electron-win-state').default
-// import {app , BrowserWindow} from 'electron'
+//获取网站截图
+require('./controller/getSource')
 
 const createWindow = ()=>{
   const winState = new WinState({
@@ -12,11 +13,19 @@ const createWindow = ()=>{
     ...winState.winOptions,
     webPreferences:{
       preload:path.resolve(__dirname,'./preload/index.js')
-    }
+    },
+    show:false
   })
+
   winState.manage(win)
   win.webContents.openDevTools()
   win.loadURL('http://localhost:5173')
+
+  //页面加载完毕在显示窗口
+  win.on('ready-to-show',()=>{
+    win.show()
+  })
+
 }
 
 app.on('window-all-closed', () => {
@@ -30,4 +39,5 @@ app.whenReady().then(()=>{
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+  
 }) 
