@@ -3,6 +3,8 @@ const path = require('path')
 const WinState = require('electron-win-state').default
 //获取网站截图
 require('./controller/getSource')
+//alert
+require('./controller/alert')
 
 const createWindow = ()=>{
   const winState = new WinState({

@@ -4,8 +4,8 @@ const getSource = (url)=>{
   return new Promise ((resolve,reject)=>{
 
     const win = new BrowserWindow({
-      width:500,
-      height:500,
+      width:1000,
+      height:800,
       show:false,
       webPreferences:{
         //只在内存中加载
@@ -21,7 +21,7 @@ const getSource = (url)=>{
       try {
         const image = await win.webContents.capturePage()
         const screenshot = image.toDataURL()
-        
+          
         resolve({
           title,
           screenshot,
@@ -39,4 +39,3 @@ ipcMain.handle('on-url-event',async (e,url)=>{
   const request = await getSource(url)
   return request
 })
-module.exports = getSource

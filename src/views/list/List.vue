@@ -1,27 +1,22 @@
 <template>
   <div>
-    <!-- <p id="no-item">暂无数据。</p> -->
-    <div id="items">
-      <div class="read-item">
-        <img src="" alt="">
-        <h2>23333</h2>
-        <button> x </button>
-      </div>
-      <div class="read-item">
-        <img src="" alt="">
-        <h2>23333</h2>
-        <button> x </button>
-      </div>
-      <div class="read-item">
-        <img src="" alt="">
-        <h2>23333</h2>
-        <button> x </button>
+    <p id="no-item" v-if="websiteStore.find(keywords).length <= 0">暂无数据。</p>
+    <div id="items" v-else>
+      <div class="read-item" :class="{ selected: currentIndex === index }"
+        v-for="(ws, index) in websiteStore.find(keywords)" @click="handleItemIndex(index, ws.url)">
+        <img :src="ws.screenshot" :alt="ws.title">
+        <h2>{{ ws.title }}</h2>
+        <button @click.stop="websiteStore.deleteItem(ws.url)"> x </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
+import useIndex from './useIndex'
+import useWebsites from './useWebsites'
+const { currentIndex, handleItemIndex } = useIndex()
+const { websiteStore, keywords } = useWebsites()
 
 </script>
 
@@ -33,7 +28,7 @@
   .read-item {
     display: flex;
     width: 100%;
-    height: 13vh;
+    height: 18vh;
     margin-left: 10px;
     margin-bottom: 5px;
     background: #ebe8e8;
@@ -49,6 +44,7 @@
     }
 
     img {
+      height: 100%;
       width: 20%;
     }
 
@@ -69,6 +65,12 @@
       border-radius: 50%;
       visibility: hidden;
       cursor: pointer;
+    }
+  }
+
+  .selected {
+    h2 {
+      color: rgb(96, 171, 241);
     }
   }
 }

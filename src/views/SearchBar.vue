@@ -2,18 +2,25 @@
   <div class="search-container">
     <div class="button" @click="handleDialog(true)">+</div>
     <div class="input">
-      <input type="text" placeholder="请输入关键字">
+      <input type="text" placeholder="请输入关键字" @keyup="search">
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
 import { inject } from 'vue'
+import _ from 'lodash'
 
 const handleDialog = (value: boolean) => {
   setIsShow(value)
 }
 const { setIsShow } = inject('dialog-visible') as dialogState
+const { setKeywords } = inject('searchbar-keywords') as searchState
+
+const search = _.debounce((e: any) => {
+  setKeywords(e.target.value)
+}, 500)
+
 </script>
 
 <style lang = 'less' scoped>
