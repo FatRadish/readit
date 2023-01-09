@@ -5,7 +5,8 @@ const useIndex = () => {
 
   const handleItemIndex = (i: number, url: string) => {
     currentIndex.value = i
-    window.open(url, '_blank')
+    // window.open(url, '_blank')
+    window.myApi.openWindow(url)
   }
 
   return {

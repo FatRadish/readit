@@ -1,10 +1,11 @@
 <template>
-  <Home></Home>
+  <Header></Header>
+  <router-view></router-view>
 </template>
 
 <script setup lang='ts'>
 import { ref, provide } from 'vue'
-import Home from './views/Home.vue'
+import Header from './views/Header.vue'
 
 //控制dialog的显示
 const isShow = ref<boolean>(false);

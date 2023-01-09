@@ -5,11 +5,16 @@ const WinState = require('electron-win-state').default
 require('./controller/getSource')
 //alert
 require('./controller/alert')
+//打开窗口
+require('./controller/openWIndow')
 
 const createWindow = ()=>{
   const winState = new WinState({
     defaultWidth: 800,
     defaultHeight: 600,
+    electronStoreOptions:{
+      name:'window-state-main'
+    }
   })
   const win = new BrowserWindow({
     ...winState.winOptions,
