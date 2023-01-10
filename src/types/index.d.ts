@@ -13,7 +13,8 @@ type nativeImage = {
 type MyApi = {
   sendUrl: (url: string) => Promise<nativeImage>,
   alert: (url: string) => void,
-  openWindow: (url: string) => void
+  openWindow: (url: string) => void,
+  getFileList: () => Promise<Array<string>>
 }
 declare interface Window {
   myApi: MyApi,

@@ -30,7 +30,6 @@ const saveas = (url)=>{
       {
         label:'图片另存为',
         click:getImage(url),
-        accelerator:'Ctrl+Shift+s'
       }
     ])
 

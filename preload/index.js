@@ -13,8 +13,13 @@ const openWindow = (url)=>{
   ipcRenderer.invoke('on-open-event',url)
 }
 
+const getFileList = async()=>{
+  const fileList = await ipcRenderer.invoke('on-getFiles-event')
+  return fileList
+}
 contextBridge.exposeInMainWorld('myApi', {
   sendUrl,
   alert,
-  openWindow
+  openWindow,
+  getFileList
 })

@@ -7,6 +7,8 @@ require('./controller/getSource')
 require('./controller/alert')
 //打开窗口
 require('./controller/openWIndow')
+//获取图片路径
+require('./controller/getFileList')
 
 const createWindow = ()=>{
   const winState = new WinState({
