@@ -9,6 +9,8 @@ require('./controller/alert')
 require('./controller/openWIndow')
 //获取图片路径
 require('./controller/getFileList')
+//buildMenu
+require('./controller/buildMenu')
 
 const createWindow = ()=>{
   const winState = new WinState({
@@ -27,7 +29,7 @@ const createWindow = ()=>{
   })
 
   winState.manage(win)
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
   win.loadURL('http://localhost:5173')
 
   //页面加载完毕在显示窗口
@@ -50,3 +52,5 @@ app.whenReady().then(()=>{
   })
   
 }) 
+
+if (require('electron-squirrel-startup')) app.quit();

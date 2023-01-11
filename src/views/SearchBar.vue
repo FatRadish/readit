@@ -14,12 +14,18 @@ import _ from 'lodash'
 const handleDialog = (value: boolean) => {
   setIsShow(value)
 }
+
 const { setIsShow } = inject('dialog-visible') as dialogState
+
 const { setKeywords } = inject('searchbar-keywords') as searchState
 
 const search = _.debounce((e: any) => {
   setKeywords(e.target.value)
 }, 500)
+
+defineExpose({
+  handleDialog
+})
 
 </script>
 
